@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { Estimates } from './features/estimates/Estimates';
+
 function App() {
-  return <div>Carbon Tracker</div>;
+  return <Estimates />;
 }
 
 export default App;
