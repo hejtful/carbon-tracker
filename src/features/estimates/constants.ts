@@ -5,6 +5,10 @@ import {
   Country,
 } from './estimatesTypes';
 
+export const estimatesTitle = 'Carbon Tracker';
+export const estimatesChartSubtitle = 'Carbon usage estimates';
+export const addEstimateFormSubtitle = 'Add an estimate';
+
 export const estimatesChartHeight = 500;
 
 export const chartTypes: ChartTypeItem[] = [

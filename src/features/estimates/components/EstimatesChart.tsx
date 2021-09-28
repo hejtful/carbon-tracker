@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { Box, Typography } from '@material-ui/core';
 import {
   ArgumentAxis,
   ValueAxis,
@@ -9,48 +8,19 @@ import {
   LineSeries,
   BarSeries,
 } from '@devexpress/dx-react-chart-material-ui';
-import { Skeleton } from '@material-ui/lab';
 import { useTheme } from '@material-ui/core/styles';
 import { scaleTime } from 'd3-scale';
 import { ArgumentScale } from '@devexpress/dx-react-chart';
 
 import { estimatesChartHeight } from '../constants';
 import { ChartType, EstimateChartData } from '../estimatesTypes';
+import { EstimatesChartSkeleton, EstimatesChartMessage } from './';
 
 interface Props {
   data: EstimateChartData[];
   error?: FetchBaseQueryError | SerializedError;
   isEmpty: boolean;
   chartType: ChartType;
-}
-
-function LoadingSkeleton() {
-  return (
-    <Skeleton
-      animation="wave"
-      variant="rect"
-      width="100%"
-      height={estimatesChartHeight}
-    />
-  );
-}
-
-function ErrorMessage() {
-  return (
-    <Box
-      style={{
-        alignItems: 'center',
-        display: 'flex',
-        height: estimatesChartHeight,
-        justifyContent: 'center',
-        width: '100%',
-      }}
-    >
-      <Typography variant="h6" component="div">
-        An error occurred while loading chart data. Please try again later.
-      </Typography>
-    </Box>
-  );
 }
 
 export function EstimatesChart({ data, error, isEmpty, chartType }: Props) {
@@ -63,9 +33,15 @@ export function EstimatesChart({ data, error, isEmpty, chartType }: Props) {
 
   const theme = useTheme();
 
-  if (isEmpty) return <LoadingSkeleton />;
+  if (isEmpty) return <EstimatesChartSkeleton />;
 
-  if (error) return <ErrorMessage />;
+  if (error) {
+    return (
+      <EstimatesChartMessage>
+        An error occurred while loading chart data. Please try again later.
+      </EstimatesChartMessage>
+    );
+  }
 
   return (
     <Chart data={chartData} height={estimatesChartHeight}>
