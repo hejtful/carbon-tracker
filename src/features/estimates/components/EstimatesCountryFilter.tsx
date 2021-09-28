@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { FormControl, InputLabel, Select } from '@material-ui/core';
 
 import { countries } from '../constants';
 import { Country, EstimateChartData } from '../estimatesTypes';
@@ -28,20 +28,23 @@ export function EstimatesCountryFilter({ data, value, onChange }: Props) {
 
   return (
     <FormControl variant="outlined" fullWidth>
-      <InputLabel id="country-select-label">Country</InputLabel>
+      <InputLabel htmlFor="country-select">Country</InputLabel>
       <Select
-        labelId="country-select-label"
-        id="country-select"
+        native
         label="Country"
         fullWidth
+        inputProps={{
+          name: 'country-select',
+          id: 'country-select',
+        }}
         value={value}
         onChange={handleChange}
       >
-        <MenuItem value="">All</MenuItem>
+        <option aria-label="None" value="" />
         {availableCountries.map((country) => (
-          <MenuItem key={country.code} value={country.code}>
+          <option key={country.code} value={country.code}>
             {country.label}
-          </MenuItem>
+          </option>
         ))}
       </Select>
     </FormControl>

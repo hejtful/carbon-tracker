@@ -44,7 +44,9 @@ export function EstimatesOverview() {
         </Grid>
 
         <Grid item xs={12}>
-          <EstimatesChartWrapper subtitle={estimatesChartSubtitle}>
+          <EstimatesChartWrapper
+            subtitle={`${estimatesChartSubtitle} ${chartType.toLocaleLowerCase()} chart`}
+          >
             <EstimatesChart
               data={filteredData}
               error={error}

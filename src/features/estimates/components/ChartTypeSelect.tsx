@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { FormControl, InputLabel, Select } from '@material-ui/core';
 
 import { ChartType, ChartTypeItem } from '../estimatesTypes';
 
@@ -19,19 +19,22 @@ export function ChartTypeSelect({ data, value, onChange }: Props) {
 
   return (
     <FormControl variant="outlined" fullWidth>
-      <InputLabel id="chart-type">Chart Type</InputLabel>
+      <InputLabel htmlFor="chart-type-select">Chart type</InputLabel>
       <Select
-        labelId="chart-type"
-        id="chart-type-select"
-        label="Chart Type"
+        native
+        label="Chart type"
         fullWidth
+        inputProps={{
+          name: 'chart-type-select',
+          id: 'chart-type-select',
+        }}
         value={value}
         onChange={handleChange}
       >
         {data.map((chartType) => (
-          <MenuItem key={chartType.value} value={chartType.value}>
+          <option key={chartType.value} value={chartType.value}>
             {chartType.label}
-          </MenuItem>
+          </option>
         ))}
       </Select>
     </FormControl>

@@ -14,7 +14,11 @@ export const EstimatesChartMessage: React.FC = ({ children }) => {
         width: '100%',
       }}
     >
-      <Typography variant="h6" component="div">
+      <Typography
+        variant="h6"
+        component="div"
+        data-testid="estimates-chart-message"
+      >
         {children}
       </Typography>
     </Box>

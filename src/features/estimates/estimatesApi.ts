@@ -16,7 +16,6 @@ export const estimatesApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Estimates'],
   endpoints: (builder) => ({
     authenticate: builder.query<null, null>({
       query: () => ({
@@ -37,24 +36,33 @@ export const estimatesApi = createApi({
           carbonG: data.attributes.carbon_g,
           country: data.attributes.country,
         })),
-      providesTags: (result) => {
-        if (!result) return [{ type: 'Estimates', id: 'LIST' }];
-        return [
-          ...result.map(({ id }) => ({ type: 'Estimates', id } as const)),
-          { type: 'Estimates', id: 'LIST' },
-        ];
-      },
     }),
 
     addEstimate: builder.mutation<EstimateResponse, AddEstimatePayload>({
-      query(body) {
+      query: (body) => {
         return {
           url: `estimates`,
           method: 'POST',
           body,
         };
       },
-      invalidatesTags: [{ type: 'Estimates', id: 'LIST' }],
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          dispatch(
+            estimatesApi.util.updateQueryData('getEstimates', null, (draft) => {
+              draft.push({
+                id: data.id,
+                estimatedAt: data.attributes.estimated_at,
+                carbonG: data.attributes.carbon_g,
+                country: data.attributes.country,
+              });
+            })
+          );
+        } catch (e) {}
+      },
     }),
   }),
 });

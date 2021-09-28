@@ -23,7 +23,10 @@ export function AddEstimateForm() {
     <EstimatesCard>
       <EstimatesSubtitle>{addEstimateFormSubtitle}</EstimatesSubtitle>
 
-      <form onSubmit={handleSubmit(addEstimate)}>
+      <form
+        onSubmit={handleSubmit(addEstimate)}
+        data-testid="add-estimate-form"
+      >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3} container>
             <Autocomplete
@@ -45,12 +48,14 @@ export function AddEstimateForm() {
                 />
               )}
               disabled={isLoading}
+              data-testid="add-estimate-location-field"
             />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3} container>
             <TextField
               name="usage"
+              id="usage"
               label="Electricity usage"
               fullWidth
               type="number"
@@ -102,6 +107,7 @@ export function AddEstimateForm() {
               color="primary"
               type="submit"
               disabled={isLoading || !isFormValid()}
+              data-testid="submit-button"
             >
               Submit
             </Button>

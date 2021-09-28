@@ -9,6 +9,7 @@ export function EstimatesChartSkeleton() {
       variant="rect"
       width="100%"
       height={estimatesChartHeight}
+      data-testid="estimates-chart-skeleton"
     />
   );
 }

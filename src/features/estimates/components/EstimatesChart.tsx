@@ -44,25 +44,27 @@ export function EstimatesChart({ data, error, isEmpty, chartType }: Props) {
   }
 
   return (
-    <Chart data={chartData} height={estimatesChartHeight}>
-      <ArgumentScale factory={scaleTime} />
-      <ArgumentAxis />
-      <ValueAxis />
+    <div data-testid="estimates-chart">
+      <Chart data={chartData} height={estimatesChartHeight}>
+        <ArgumentScale factory={scaleTime} />
+        <ArgumentAxis />
+        <ValueAxis />
 
-      {chartType === ChartType.LINE && (
-        <LineSeries
-          valueField="y"
-          argumentField="x"
-          color={theme.palette.info.main}
-        />
-      )}
-      {chartType === ChartType.BAR && (
-        <BarSeries
-          valueField="y"
-          argumentField="x"
-          color={theme.palette.info.main}
-        />
-      )}
-    </Chart>
+        {chartType === ChartType.LINE && (
+          <LineSeries
+            valueField="y"
+            argumentField="x"
+            color={theme.palette.info.main}
+          />
+        )}
+        {chartType === ChartType.BAR && (
+          <BarSeries
+            valueField="y"
+            argumentField="x"
+            color={theme.palette.info.main}
+          />
+        )}
+      </Chart>
+    </div>
   );
 }
