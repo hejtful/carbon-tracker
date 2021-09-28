@@ -1,4 +1,5 @@
 import { AddEstimateForm } from './AddEstimateForm';
+import { EstimatesCountryFilter } from './EstimatesCountryFilter';
 import { EstimatesChart } from './EstimatesChart';
 
-export { AddEstimateForm, EstimatesChart };
+export { AddEstimateForm, EstimatesCountryFilter, EstimatesChart };
