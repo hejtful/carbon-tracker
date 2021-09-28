@@ -18,7 +18,7 @@ export interface EstimateResponse {
 
 export interface EstimateChartData {
   id: string;
-  estimatedAt: string;
+  estimatedAt: Date;
   carbonG: number;
   country: string;
 }
@@ -40,4 +40,14 @@ export interface Country {
   label: string;
   phone: string;
   suggested?: boolean;
+}
+
+export enum ChartType {
+  LINE = 'LINE',
+  BAR = 'BAR',
+}
+
+export interface ChartTypeItem {
+  value: ChartType;
+  label: string;
 }

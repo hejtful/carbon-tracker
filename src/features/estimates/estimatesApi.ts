@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import {
@@ -34,9 +33,7 @@ export const estimatesApi = createApi({
       transformResponse: (response: EstimateResponse[]) =>
         response.map(({ data }) => ({
           id: data.id,
-          estimatedAt: dayjs(data.attributes.estimated_at).format(
-            'DD/MM/YY HH:mm:ss'
-          ),
+          estimatedAt: data.attributes.estimated_at,
           carbonG: data.attributes.carbon_g,
           country: data.attributes.country,
         })),

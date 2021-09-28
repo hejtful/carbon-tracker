@@ -1,4 +1,16 @@
-import { Country, ElectricityUnit } from './estimatesTypes';
+import {
+  ChartType,
+  ChartTypeItem,
+  ElectricityUnit,
+  Country,
+} from './estimatesTypes';
+
+export const estimatesChartHeight = 500;
+
+export const chartTypes: ChartTypeItem[] = [
+  { value: ChartType.LINE, label: 'Line' },
+  { value: ChartType.BAR, label: 'Bar' },
+];
 
 export const units: ElectricityUnit[] = [
   ElectricityUnit.MWH,
